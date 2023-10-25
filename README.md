@@ -1,14 +1,11 @@
 # 행복을 찾아서 ☀️
 
-<div align="start">
-    <img src ="https://velog.velcdn.com/images/jmlee9707/post/c3786c0c-f58b-426f-ad9c-980aa971047d/image.svg" width="300px" />
+<div align="center">
+    <img src ="https://velog.velcdn.com/images/jmlee9707/post/c3786c0c-f58b-426f-ad9c-980aa971047d/image.svg" width="400px" />
     <br />
     <h2>AI 기반 감성 분석 다이어리</h2>
     <br />
 </div>
-
-<br />
-<br />
 
 ## 💡 AI 감성 분석 데이터 수집용 사이트
 
