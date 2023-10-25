@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'Pretendard';
+	src: url('./PretendardVariable.woff2') format('woff2');
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'MBC';
+	src: url('./MBC1961M.woff2') format('woff2');
+	font-style: normal;
+}
