@@ -1,9 +1,10 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import GlobalStyle from '@styles/globalStyle';
 import styled from 'styled-components';
-import '@styles/font.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import '@styles/font/font.css';
 import Home from 'pages';
 import Result from 'pages/result';
+import Thanks from 'pages/thanks';
 
 const App = () => {
 	return (
@@ -13,6 +14,7 @@ const App = () => {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/result" element={<Result />} />
+					<Route path="/thanks" element={<Thanks />} />
 				</Routes>
 			</BrowserRouter>
 		</AppContainer>
@@ -21,4 +23,11 @@ const App = () => {
 
 export default App;
 
-const AppContainer = styled.div``;
+const AppContainer = styled.div`
+	background-color: rgba(255, 113, 116, 0.08);
+	/* background-color: red; */
+	padding: 0;
+	display: flex;
+	width: 100vw;
+	min-height: 100vh;
+`;
