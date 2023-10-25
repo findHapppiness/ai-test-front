@@ -21,7 +21,7 @@ const Thanks = () => {
 				<MoreSection>
 					<p>
 						서장호 (jangho_seo@tmax.co.kr) | 이상협(sanghyeop_lee@tmax.co.kr)
-						<br /> 이정민 (jeongmin_lee2@tmax.co.kr)
+						<br /> 이정민 (jeongmin_lee2@tmax.co.kr) | 류현주 (hyunju_ryu@tmax.co.kr)
 					</p>
 				</MoreSection>
 			</InnerContents>
@@ -98,7 +98,7 @@ const MoreSection = styled.div`
 		letter-spacing: 0.5px;
 		padding-top: 20px;
 		text-align: center;
-		line-height: 140%;
+		line-height: 160%;
 		color: #737373;
 		font-family: var(--font-PRE);
 		font-weight: 500;
