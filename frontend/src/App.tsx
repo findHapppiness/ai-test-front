@@ -24,10 +24,16 @@ const App = () => {
 export default App;
 
 const AppContainer = styled.div`
-	background-color: rgba(255, 113, 116, 0.08);
-	/* background-color: red; */
+	background-color: rgba(255, 113, 116, 0.05);
 	padding: 0;
 	display: flex;
 	width: 100vw;
 	min-height: 100vh;
+
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+		width: 0 !important;
+	}
 `;

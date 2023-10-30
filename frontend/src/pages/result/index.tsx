@@ -3,6 +3,7 @@ import { ReactComponent as LogoIcon } from '@assets/full_logo.svg';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import styled from 'styled-components';
+import { request } from '@api/index';
 
 const FEELINGS_MAIN = ['긍정', '중립', '부정'];
 const FEELINGS_DETAIL = ['기쁨', '분노', '평온', '짜증', '슬픔', '불안'];
@@ -22,9 +23,22 @@ const Result = () => {
 	const handleClickSub = (str: string) => {
 		setSubSelected(str);
 	};
-	const handleSendFeedback = () => {
+	const handleSendFeedback = async () => {
 		if (mainSelected && subSelected) {
-			navigate('/thanks');
+			const { status } = await request({
+				method: 'POST',
+				url: 'feedback',
+				reqData: {
+					sentence: sentence,
+					mainEmotion: mainSelected,
+					subEmotion: subSelected,
+				},
+			});
+			if (status === 200) {
+				navigate('/thanks');
+			} else {
+				console.log('서비스 에러');
+			}
 		}
 	};
 
@@ -36,6 +50,7 @@ const Result = () => {
 	};
 
 	useEffect(() => {
+		// 상태 초기화
 		setSentence(location.state.sentence);
 		setEmotion(location.state.emotion);
 	}, []);
@@ -45,9 +60,9 @@ const Result = () => {
 			<LogoSVGIcon />
 			<TextSection>
 				<TopText>
-					입력한 문장은 <span>"</span>
-					<span>{sentence}</span>
-					<span>"</span> 이며
+					입력한 문장은
+					<span>&nbsp;{sentence}&nbsp;</span>
+					이며
 				</TopText>
 				<QuesPart>
 					문장에서 <span>{emotion}</span>
@@ -58,7 +73,7 @@ const Result = () => {
 				</MoreText>
 				{visible && (
 					<BtnSection>
-						<p>가장 비슷한 감정을 선택해주세요 :)</p>
+						<p>가장 비슷한 감정을 선택해주세요!</p>
 						<p>&gt; 대분류 중 하나를 선택해주세요</p>
 						<Buttons>
 							{FEELINGS_MAIN.map((feel) => (
@@ -97,12 +112,17 @@ export default Result;
 const ResultContainer = styled.div`
 	width: 100%;
 	height: 100%;
-
 	display: flex;
 	align-items: center;
-	padding: 80px;
-
 	flex-direction: column;
+	padding: 80px 0;
+
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+		width: 0 !important;
+	}
 `;
 const LogoSVGIcon = styled(LogoIcon)`
 	height: 100px;
@@ -114,25 +134,28 @@ const TextSection = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 80%;
-	padding: 50px;
+	width: 85%;
+	max-width: 800px;
+	padding: 50px 40px;
 	border-radius: 20px;
 `;
+
 const TopText = styled.div`
-	font-size: 24px;
+	font-size: 22px;
 	font-family: var(--font-PRE);
 	font-weight: 500;
-	line-height: 30px;
+	line-height: 140%;
 	color: #515151;
 	padding-bottom: 10px;
+	text-align: center;
 
 	span {
 		display: inline-block;
 		font-weight: 700;
-		font-size: 28px;
+		font-size: 24px;
 		color: var(--color-black);
 		max-width: 300px;
-		line-height: 30px;
+		line-height: 140%;
 		white-space: nowrap;
 		text-overflow: ellipsis;
 		overflow: hidden;
@@ -140,15 +163,17 @@ const TopText = styled.div`
 `;
 const QuesPart = styled.div`
 	line-height: 140%;
-	font-size: 24px;
+	font-size: 22px;
 	font-family: var(--font-PRE);
 	font-weight: 500;
 	line-height: 140%;
 	color: #515151;
+	text-align: center;
+	white-space: nowrap;
 
 	span {
 		font-weight: 700;
-		font-size: 30px;
+		font-size: 26px;
 		color: var(--color-pink);
 	}
 `;
@@ -162,6 +187,7 @@ const MoreText = styled.div`
 	color: #707070;
 	text-align: center;
 	padding-top: 30px;
+	white-space: nowrap;
 
 	span {
 		color: var(--color-pink);
@@ -184,11 +210,10 @@ const BtnSection = styled.div`
 	p {
 		&:first-child {
 			padding: 30px 0 10px 0;
-			font-size: 24px;
+			font-size: 22px;
 			color: #515252;
 		}
-
-		line-height: 140%;
+		white-space: nowrap;
 		font-size: 20px;
 		font-family: var(--font-PRE);
 		font-weight: 500;

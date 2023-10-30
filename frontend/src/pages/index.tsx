@@ -41,12 +41,11 @@ const HomeContainer = styled.div`
 
 	display: flex;
 	align-items: center;
-	padding: 100px;
 	justify-content: center;
 	flex-direction: column;
 `;
 const LogoSVGIcon = styled(LogoIcon)`
-	height: 150px;
+	max-height: 100px;
 	margin-bottom: 70px;
 `;
 
@@ -55,7 +54,8 @@ const InputSection = styled.input`
 	border: 2px solid #e7e7e7;
 	border-radius: 12px;
 	height: 70px;
-	width: 40%;
+	width: 80%;
+	max-width: 800px;
 	padding: 0 16px;
 	text-align: start;
 
@@ -73,7 +73,6 @@ const InputSection = styled.input`
 `;
 
 const SendBtn = styled.button`
-	width: 20%;
 	font-size: 20px;
 	font-weight: 700;
 	color: var(--color-pink);
