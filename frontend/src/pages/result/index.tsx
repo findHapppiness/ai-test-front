@@ -8,7 +8,8 @@ const FEELINGS_MAIN = ['긍정', '중립', '부정'];
 const FEELINGS_DETAIL = ['기쁨', '분노', '평온', '짜증', '슬픔', '불안'];
 
 const Result = () => {
-	const [ques, setQues] = useState<string>('');
+	const [sentence, setSentence] = useState<string>('');
+	const [emotion, setEmotion] = useState<string>('');
 	const navigate = useNavigate();
 	const location = useLocation();
 	const [visible, setVisible] = useState(false);
@@ -16,7 +17,9 @@ const Result = () => {
 	const [subSelected, setSubSelected] = useState<string>('');
 
 	useEffect(() => {
-		setQues(location.state);
+		console.log(location.state);
+		setSentence(location.state.sentence);
+		setEmotion(location.state.emotion);
 	}, []);
 
 	const handleClickMain = (str: string) => {
@@ -37,11 +40,11 @@ const Result = () => {
 			<TextSection>
 				<TopText>
 					입력한 문장은 <span>"</span>
-					<span>{ques}</span>
+					<span>{sentence}</span>
 					<span>"</span> 이며
 				</TopText>
 				<QuesPart>
-					문장에서 <span>분노</span> 느껴집니다.
+					문장에서 <span>{emotion}</span> 느껴집니다.
 				</QuesPart>
 				<MoreText onClick={() => setVisible((prev) => !prev)}>
 					감정이 의도와 다르게 분석되었다면 <span>click!</span>

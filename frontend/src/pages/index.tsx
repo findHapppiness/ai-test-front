@@ -2,13 +2,29 @@ import styled from 'styled-components';
 import { ReactComponent as LogoIcon } from '@assets/full_logo.svg';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { request } from '@api/index';
 
 const Home = () => {
 	const quesRef = useRef<HTMLInputElement>(null);
 	const navigate = useNavigate();
-	const handleMovePage = () => {
-		if (quesRef.current?.value) navigate('/result', { state: quesRef.current?.value });
+
+	const handleMovePage = async () => {
+		if (quesRef.current?.value) {
+			const text = quesRef.current.value;
+			const { status, data } = await request({ method: 'GET', url: `predict/${text}` });
+			if (status === 200) {
+				navigate('/result', {
+					state: {
+						sentence: data.sentence,
+						emotion: data.emotion,
+					},
+				});
+			}
+		} else {
+			alert('문장이 입력되지 않았습니다');
+		}
 	};
+
 	return (
 		<HomeContainer>
 			<LogoSVGIcon />
