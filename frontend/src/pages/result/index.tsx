@@ -16,12 +16,6 @@ const Result = () => {
 	const [mainSelected, setMainSelected] = useState<string>('');
 	const [subSelected, setSubSelected] = useState<string>('');
 
-	useEffect(() => {
-		console.log(location.state);
-		setSentence(location.state.sentence);
-		setEmotion(location.state.emotion);
-	}, []);
-
 	const handleClickMain = (str: string) => {
 		setMainSelected(str);
 	};
@@ -34,6 +28,18 @@ const Result = () => {
 		}
 	};
 
+	const handlePrefix = (txt: string) => {
+		const c = txt[txt.length - 1];
+		const code = c.charCodeAt(0) - 0xac00;
+		if (code % 28 !== 0) return '이 느껴집니다.';
+		else return '가 느껴집니다.';
+	};
+
+	useEffect(() => {
+		setSentence(location.state.sentence);
+		setEmotion(location.state.emotion);
+	}, []);
+
 	return (
 		<ResultContainer>
 			<LogoSVGIcon />
@@ -44,7 +50,8 @@ const Result = () => {
 					<span>"</span> 이며
 				</TopText>
 				<QuesPart>
-					문장에서 <span>{emotion}</span> 느껴집니다.
+					문장에서 <span>{emotion}</span>
+					{emotion && handlePrefix(emotion)}
 				</QuesPart>
 				<MoreText onClick={() => setVisible((prev) => !prev)}>
 					감정이 의도와 다르게 분석되었다면 <span>click!</span>
