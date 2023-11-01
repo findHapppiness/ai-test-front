@@ -114,10 +114,10 @@ const Result = () => {
 								</Chip>
 							))}
 						</Buttons>
-						<ButtonSection>
-							<Btn onClick={() => navigate(-1)}>뒤로 가기</Btn>
+						<MoveButtonSection>
+							<Btn onClick={() => navigate('/')}>뒤로 가기</Btn>
 							<Btn onClick={handleSendFeedback}>결과 제출하기</Btn>
-						</ButtonSection>
+						</MoveButtonSection>
 					</BtnSection>
 				)}
 			</TextSection>
@@ -269,7 +269,7 @@ const Chip = styled.button<{ $isTop: boolean; $isSelected: boolean }>`
 	}
 `;
 
-const ButtonSection = styled.div`
+const MoveButtonSection = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -288,7 +288,7 @@ const Btn = styled.button`
 	padding: 12px 20px;
 	border: 1px solid var(--color-pink);
 	border-radius: 20px;
-	margin-top: 50px;
+	margin-top: 20px;
 	background-color: var(--color-white);
 	cursor: pointer;
 `;
