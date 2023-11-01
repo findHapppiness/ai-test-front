@@ -71,7 +71,7 @@ const Result = () => {
 
 	return (
 		<ResultContainer>
-			<LogoSVGIcon />
+			<LogoSVGIcon onClick={() => navigate('/')} />
 			<TextSection>
 				<TopText>
 					입력한 문장은

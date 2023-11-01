@@ -19,6 +19,10 @@ const Home = () => {
 		}
 	};
 
+	const handleClickEnter = (e: React.KeyboardEvent) => {
+		if (e.key === 'Enter') handleMovePage();
+	};
+
 	const handleMovePage = async () => {
 		if (quesRef.current?.value) {
 			const text = quesRef.current.value;
@@ -38,8 +42,13 @@ const Home = () => {
 
 	return (
 		<HomeContainer>
-			<LogoSVGIcon />
-			<InputSection type="text" ref={quesRef} placeholder="분석할 문장을 입력하세요" />
+			<LogoSVGIcon onClick={() => navigate('/')} />
+			<InputSection
+				type="text"
+				ref={quesRef}
+				placeholder="분석할 문장을 입력하세요"
+				onKeyDown={handleClickEnter}
+			/>
 			<SendBtn onClick={handleMovePage}>결과 확인하기</SendBtn>
 			{visibleTool && <TooltipBox txt="문장이 입력되지 않았습니다" />}
 		</HomeContainer>
@@ -59,6 +68,7 @@ const HomeContainer = styled.div`
 const LogoSVGIcon = styled(LogoIcon)`
 	max-height: 100px;
 	margin-bottom: 70px;
+	cursor: pointer;
 `;
 
 const InputSection = styled.input`

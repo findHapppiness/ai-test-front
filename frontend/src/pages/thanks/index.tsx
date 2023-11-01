@@ -7,7 +7,7 @@ const Thanks = () => {
 
 	return (
 		<ThanksContainer>
-			<LogoSVGIcon />
+			<LogoSVGIcon onClick={() => navigate('/')} />
 			<InnerContents>
 				<Title>감사합니다 :)</Title>
 				<ButtonSection>
