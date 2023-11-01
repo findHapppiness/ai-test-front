@@ -1,12 +1,23 @@
 import styled from 'styled-components';
 import { ReactComponent as LogoIcon } from '@assets/full_logo.svg';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { request } from '@api/index';
+import TooltipBox from '@components/TooltipBox';
 
 const Home = () => {
 	const quesRef = useRef<HTMLInputElement>(null);
 	const navigate = useNavigate();
+	const [visibleTool, setVisibleTool] = useState(false);
+
+	const handleTooltip = () => {
+		if (!visibleTool) {
+			setVisibleTool(true);
+			setTimeout(() => {
+				setVisibleTool(false);
+			}, 2000);
+		}
+	};
 
 	const handleMovePage = async () => {
 		if (quesRef.current?.value) {
@@ -21,7 +32,7 @@ const Home = () => {
 				});
 			}
 		} else {
-			alert('문장이 입력되지 않았습니다');
+			handleTooltip();
 		}
 	};
 
@@ -30,6 +41,7 @@ const Home = () => {
 			<LogoSVGIcon />
 			<InputSection type="text" ref={quesRef} placeholder="분석할 문장을 입력하세요" />
 			<SendBtn onClick={handleMovePage}>결과 확인하기</SendBtn>
+			{visibleTool && <TooltipBox txt="문장이 입력되지 않았습니다" />}
 		</HomeContainer>
 	);
 };

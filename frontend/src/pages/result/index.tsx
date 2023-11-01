@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import styled from 'styled-components';
 import { request } from '@api/index';
+import TooltipBox from '@components/TooltipBox';
 
 const FEELINGS_MAIN = ['긍정', '중립', '부정'];
 const FEELINGS_DETAIL = ['기쁨', '분노', '평온', '짜증', '슬픔', '불안'];
@@ -16,6 +17,17 @@ const Result = () => {
 	const [visible, setVisible] = useState(false);
 	const [mainSelected, setMainSelected] = useState<string>('');
 	const [subSelected, setSubSelected] = useState<string>('');
+
+	const [visibleTool, setVisibleTool] = useState(false);
+
+	const handleTooltip = () => {
+		if (!visibleTool) {
+			setVisibleTool(true);
+			setTimeout(() => {
+				setVisibleTool(false);
+			}, 2000);
+		}
+	};
 
 	const handleClickMain = (str: string) => {
 		setMainSelected(str);
@@ -39,6 +51,8 @@ const Result = () => {
 			} else {
 				console.log('서비스 에러');
 			}
+		} else {
+			handleTooltip();
 		}
 	};
 
@@ -100,10 +114,14 @@ const Result = () => {
 								</Chip>
 							))}
 						</Buttons>
-						<SubmitBtn onClick={handleSendFeedback}>결과 제출하기</SubmitBtn>
+						<ButtonSection>
+							<Btn onClick={() => navigate(-1)}>뒤로 가기</Btn>
+							<Btn onClick={handleSendFeedback}>결과 제출하기</Btn>
+						</ButtonSection>
 					</BtnSection>
 				)}
 			</TextSection>
+			{visibleTool && <TooltipBox txt="대분류, 중분류를 하나씩 선택해주세요" />}
 		</ResultContainer>
 	);
 };
@@ -251,7 +269,17 @@ const Chip = styled.button<{ $isTop: boolean; $isSelected: boolean }>`
 	}
 `;
 
-const SubmitBtn = styled.button`
+const ButtonSection = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0 30px;
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+`;
+
+const Btn = styled.button`
 	color: var(--color-pink);
 	font-size: 18px;
 	font-family: var(--font-PRE);

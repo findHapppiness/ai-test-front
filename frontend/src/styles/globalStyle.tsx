@@ -51,12 +51,7 @@ const GlobalStyle = createGlobalStyle`
 		--color-white : #ffffff;
 		--color-pink:  #ff0074;
 		--color-sub-pink : #ff85ae;
-		/* --size-12: 12px;
-		--size-14: 14px;
-		--size-16: 16px;
-		--size-20: 20px;
-		--size-24: 24px;
-		--size-28: 28px; */
+
 
 	}
 

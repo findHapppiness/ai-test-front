@@ -8,7 +8,6 @@ const resolve = (src: string) => path.resolve(__dirname, src);
 
 export default ({ mode }) => {
 	const env = loadEnv(mode, process.cwd(), '');
-	console.log(env);
 	return defineConfig({
 		plugins: [react(), svgr(), tsconfigPaths()],
 		resolve: {
@@ -25,6 +24,7 @@ export default ({ mode }) => {
 		server: {
 			proxy: {
 				'/predict': env.VITE_SERVER_URL,
+				'/feedback': env.VITE_SERVER_URL,
 			},
 		},
 	});

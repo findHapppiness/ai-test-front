@@ -9,7 +9,7 @@ const Thanks = () => {
 		<ThanksContainer>
 			<LogoSVGIcon />
 			<InnerContents>
-				<Title>소중한 답변 감사합니다 :)</Title>
+				<Title>감사합니다 :)</Title>
 				<ButtonSection>
 					<MoveBtn $fullColored={false} onClick={() => navigate(-1)}>
 						뒤로 가기
@@ -32,17 +32,17 @@ export default Thanks;
 
 const ThanksContainer = styled.div`
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 
 	display: flex;
 	align-items: center;
-	padding: 100px;
+	padding: 80px 0;
 	justify-content: center;
 	flex-direction: column;
 `;
 const LogoSVGIcon = styled(LogoIcon)`
-	height: 150px;
-	margin-bottom: 70px;
+	height: 100px;
+	margin-bottom: 60px;
 `;
 
 const InnerContents = styled.div`
@@ -59,8 +59,18 @@ const Title = styled.div`
 	font-family: var(--font-PRE);
 	font-weight: 500;
 	line-height: 30px;
-
+	text-align: center;
 	padding-bottom: 10px;
+`;
+
+const ButtonSection = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0 30px;
+	margin-bottom: 10px;
+	width: 100%;
+	flex-wrap: wrap;
 `;
 
 const MoveBtn = styled.button<{ $fullColored: boolean }>`
@@ -72,18 +82,12 @@ const MoveBtn = styled.button<{ $fullColored: boolean }>`
 	padding: 12px 20px;
 	border-radius: 20px;
 	margin-top: 30px;
+	white-space: nowrap;
 
 	color: ${(props) => (props.$fullColored ? 'var(--color-white)' : 'var(--color-pink)')};
 	border: ${(props) =>
 		props.$fullColored ? '1px solid var(--color-pink)' : '1px solid var(--color-pink)'};
 	cursor: pointer;
-`;
-
-const ButtonSection = styled.div`
-	display: flex;
-	align-items: center;
-	gap: 30px;
-	margin-bottom: 10px;
 `;
 
 const MoreSection = styled.div`
@@ -93,6 +97,7 @@ const MoreSection = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	white-space: wrap;
 
 	p {
 		letter-spacing: 0.5px;
