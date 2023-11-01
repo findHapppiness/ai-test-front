@@ -84,7 +84,7 @@ const Result = () => {
 					{emotion && handlePrefix(emotion)}
 				</QuesPart>
 				<MoreText onClick={() => setVisible((prev) => !prev)}>
-					감정이 의도와 다르게 분석되었다면 <span>click!</span>
+					감정이 의도와 다르게 분석되었다면 &nbsp;<span>&nbsp; click!</span>
 				</MoreText>
 				{visible && (
 					<BtnSection>
@@ -203,22 +203,34 @@ const QuesPart = styled.div`
 
 const MoreText = styled.div`
 	line-height: 140%;
-	font-size: 16px;
+	font-size: 18px;
 	font-family: var(--font-PRE);
 	font-weight: 500;
 	line-height: 140%;
-	color: #707070;
 	text-align: center;
-	padding-top: 30px;
+	margin-top: 30px;
 	white-space: nowrap;
+	padding-bottom: 4px;
+	/* border: 2px solid var(--color-pink); */
+
+	color: var(--color-white);
+	opacity: 0.8;
+	border-radius: 10px;
+	padding: 10px 20px;
+	background-color: var(--color-sub-pink);
 
 	span {
+		border-left: 2px solid var(--color-white);
+		padding-left: 5px;
 		color: var(--color-pink);
-		opacity: 0.9;
+		font-weight: 800;
 	}
+
 	&:hover {
-		opacity: 0.7;
+		opacity: 1;
 		cursor: pointer;
+		color: var(--color-sub-pink);
+		background-color: transparent;
 	}
 `;
 
