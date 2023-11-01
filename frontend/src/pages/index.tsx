@@ -20,13 +20,17 @@ const Home = () => {
 	};
 
 	const handleClickEnter = (e: React.KeyboardEvent) => {
-		if (e.key === 'Enter') handleMovePage();
+		if (e.key === 'Enter') {
+			handleMovePage();
+		}
 	};
 
 	const handleMovePage = async () => {
-		if (quesRef.current?.value && quesRef.current.value.length >= 3) {
-			const text = quesRef.current.value;
-			const { status, data } = await request({ method: 'GET', url: `predict/${text}` });
+		const text = quesRef.current?.value;
+		const factoryText = encodeURIComponent(String(text));
+
+		if (factoryText.length >= 3) {
+			const { status, data } = await request({ method: 'GET', url: `predict/${factoryText}` });
 			if (status === 200) {
 				navigate('/result', {
 					state: {
