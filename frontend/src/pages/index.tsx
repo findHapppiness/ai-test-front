@@ -28,8 +28,7 @@ const Home = () => {
 	const handleMovePage = async () => {
 		const text = quesRef.current?.value;
 		const factoryText = encodeURIComponent(String(text));
-
-		if (factoryText.length >= 3) {
+		if (text && text.length >= 3) {
 			const { status, data } = await request({ method: 'GET', url: `predict/${factoryText}` });
 			if (status === 200) {
 				navigate('/result', {
@@ -40,6 +39,7 @@ const Home = () => {
 				});
 			}
 		} else {
+			console.log('error');
 			handleTooltip();
 		}
 	};
