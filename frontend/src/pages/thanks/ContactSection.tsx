@@ -3,9 +3,7 @@ import styled from 'styled-components';
 const ContactSection = () => {
 	return (
 		<ContactSectionContainer>
-			<p>서장호 (jangho_seo@tmax.co.kr)</p>
-			<p>이상협(sanghyeop_lee@tmax.co.kr)</p>
-			<p>이정민 (jeongmin_lee2@tmax.co.kr)</p> <p>류현주 (hyunju_ryu@tmax.co.kr)</p>
+			행복을 찾아서 : 서장호 | 이상협 | 이정민 | 류현주
 		</ContactSectionContainer>
 	);
 };
@@ -24,10 +22,6 @@ const ContactSectionContainer = styled.div`
 	justify-content: center;
 	white-space: wrap;
 	flex-wrap: wrap;
-
-	p {
-		white-space: nowrap;
-	}
 
 	letter-spacing: 0.5px;
 	text-align: center;
