@@ -171,9 +171,9 @@ const TopText = styled.div`
 	padding-bottom: 10px;
 	text-align: center;
 	vertical-align: middle;
+	display: flex;
 
 	p {
-		display: inline;
 		font-weight: 700;
 		font-size: 24px;
 		color: var(--color-black);
@@ -184,6 +184,7 @@ const TopText = styled.div`
 		overflow: hidden;
 	}
 `;
+
 const QuesPart = styled.div`
 	line-height: 140%;
 	font-size: 22px;
