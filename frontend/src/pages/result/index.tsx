@@ -9,7 +9,7 @@ import EmotionChip from './EmotionChip';
 
 const FEELINGS = [
 	{ main: '긍정', sub: '기쁨' },
-	{ main: '중립', sub: '분노' },
+	{ main: '부정', sub: '분노' },
 	{ main: '중립', sub: '평온' },
 	{ main: '부정', sub: '짜증' },
 	{ main: '부정', sub: '슬픔' },
