@@ -25,6 +25,7 @@ const Comments = () => {
 			ref.current?.appendChild(utterances);
 		}
 	}, []);
+
 	return <CommentsContainer ref={ref} />;
 };
 
@@ -35,5 +36,4 @@ const CommentsContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	position: relative;
 `;

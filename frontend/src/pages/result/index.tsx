@@ -7,8 +7,15 @@ import { request } from '@api/index';
 import TooltipBox from '@components/TooltipBox';
 import EmotionChip from './EmotionChip';
 
-const FEELINGS_MAIN = ['긍정', '중립', '부정'];
-const FEELINGS_DETAIL = ['기쁨', '분노', '평온', '짜증', '슬픔', '불안', '아무감정없음'];
+const FEELINGS = [
+	{ main: '긍정', sub: '기쁨' },
+	{ main: '중립', sub: '분노' },
+	{ main: '중립', sub: '평온' },
+	{ main: '부정', sub: '짜증' },
+	{ main: '부정', sub: '슬픔' },
+	{ main: '부정', sub: '불안' },
+	{ main: '중립', sub: '아무감정없음' },
+];
 
 const Result = () => {
 	const [sentence, setSentence] = useState<string>('');
@@ -30,11 +37,9 @@ const Result = () => {
 		}
 	};
 
-	const handleClickMain = (str: string) => {
-		setMainSelected(str);
-	};
-	const handleClickSub = (str: string) => {
-		setSubSelected(str);
+	const handleClick = ({ main, sub }: { main: string; sub: string }) => {
+		setMainSelected(main);
+		setSubSelected(sub);
 	};
 	const handleSendFeedback = async () => {
 		if (mainSelected && subSelected) {
@@ -89,8 +94,7 @@ const Result = () => {
 				{visible && (
 					<BtnSection>
 						<p>가장 비슷한 감정을 선택해주세요!</p>
-						<p>&gt; 대분류 중 하나를 선택해주세요</p>
-						<Buttons>
+						{/* <Buttons>
 							{FEELINGS_MAIN.map((feel) => (
 								<EmotionChip
 									key={feel}
@@ -100,16 +104,16 @@ const Result = () => {
 									text={feel}
 								/>
 							))}
-						</Buttons>
-						<p>&gt; 중분류 중 하나를 선택해주세요</p>
+						</Buttons> */}
+						{/* <p>&gt; 중분류 중 하나를 선택해주세요</p> */}
 						<Buttons>
-							{FEELINGS_DETAIL.map((feel) => (
+							{FEELINGS.map((feel) => (
 								<EmotionChip
-									key={feel}
+									key={feel.sub}
 									isTop={false}
-									onClick={() => handleClickSub(feel)}
-									selected={subSelected === feel}
-									text={feel}
+									onClick={() => handleClick({ main: feel.main, sub: feel.sub })}
+									selected={subSelected === feel.sub}
+									text={feel.sub}
 								/>
 							))}
 						</Buttons>
