@@ -3,7 +3,7 @@ import { useEffect, useRef } from 'react';
 
 const utterancesSettings = {
 	src: 'https://utteranc.es/client.js',
-	repo: 'FindHappppiness/ai-comments',
+	repo: 'findHapppiness/ai-comments',
 	'issue-term': 'pathname',
 	label: 'comments',
 	theme: 'github-light',
